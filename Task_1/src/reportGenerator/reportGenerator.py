@@ -31,6 +31,11 @@ PIVOT_TABLES_DOC: str = PIVOT_TABLES_DIR + MAIN_DOC
 FREQ_HEATMAP_DIR: str = PIVOT_TAB_DIR + "/frequency_heatmap"
 FREQ_HEATMAP_DOC: str = FREQ_HEATMAP_DIR + MAIN_DOC
 
+ADVANSED_DIR: str = "/advansed_stats"
+
+DATA_EXPLORATION_DIR: str = ADVANSED_DIR + "/data_exploration"
+DATA_EXPLORATION_DOC: str = DATA_EXPLORATION_DIR + MAIN_DOC
+
 class ReportGenerator:
     def __init__(self):
         self.__createDirectory("")
@@ -44,18 +49,22 @@ class ReportGenerator:
         self.__createDirectory(PIVOT_TAB_DIR)
         self.__createDirectory(PIVOT_TABLES_DIR)
         self.__createDirectory(FREQ_HEATMAP_DIR)
+        self.__createDirectory(ADVANSED_DIR)
+        self.__createDirectory(DATA_EXPLORATION_DIR)
 
-        self.__createFile(MAIN_DOC,         "Main")
-        self.__writeToMain(               "- Main points. Introduction")
-        self.__createFile(BASIC_STAT_DOC,   "Basic Statistic")
-        self.__createFile(DATA_SHAPE_DOC,   "Data Shape")
-        self.__createFile(DATA_TYPES_DOC,   "Data Types")
-        self.__createFile(UNIQ_DATA_DOC,    "Count of Unique Values")
-        self.__createFile(UNIQ_COUNT_DOC,   "Value Counts")
-        self.__createFile(SIMPLE_FILT_DOC,  "Simple Filtering")
-        self.__writeToMain(               "- Pivot Table")
-        self.__createFile(PIVOT_TABLES_DOC, "Pivot Tables")
-        self.__createFile(FREQ_HEATMAP_DOC, "Frequency Heatmap")
+        self.__createFile(MAIN_DOC,                 "Main")
+        self.__writeToMain(                       "- Main points. Introduction")
+        self.__createFile(BASIC_STAT_DOC,           "Basic Statistic")
+        self.__createFile(DATA_SHAPE_DOC,           "Data Shape")
+        self.__createFile(DATA_TYPES_DOC,           "Data Types")
+        self.__createFile(UNIQ_DATA_DOC,            "Count of Unique Values")
+        self.__createFile(UNIQ_COUNT_DOC,           "Value Counts")
+        self.__createFile(SIMPLE_FILT_DOC,          "Simple Filtering")
+        self.__writeToMain(                       "- Pivot Table")
+        self.__createFile(PIVOT_TABLES_DOC,         "Pivot Tables")
+        self.__createFile(FREQ_HEATMAP_DOC,         "Frequency Heatmap")
+        self.__writeToMain(                       "- Advance Statistics")
+        self.__createFile(DATA_EXPLORATION_DOC,     "Data EXploration")
 
     def __createDirectory(self, directory: str):
         directory = DEFAULT_DIRECTORY + directory
@@ -124,7 +133,20 @@ class ReportGenerator:
 
     def getFreqHeatmapPlace(self) -> str:
         PICTURE_NAME: str = "/heatmap.png"
-        PICTURE_PATH: str = DEFAULT_DIRECTORY+ FREQ_HEATMAP_DIR + PICTURE_NAME
+        PICTURE_PATH: str = DEFAULT_DIRECTORY + FREQ_HEATMAP_DIR + PICTURE_NAME
         with open(DEFAULT_DIRECTORY + FREQ_HEATMAP_DOC, 'a') as file:
             file.write(f"![heatmap](.{PICTURE_NAME})")
         return PICTURE_PATH
+    
+    def addDataEXploration(self, name: str, statistic: str):
+        with open(DEFAULT_DIRECTORY + DATA_EXPLORATION_DOC, 'a') as file:
+            file.write(f"\n{name}")
+            file.write("\n```sh\n")
+            file.write(statistic)
+            file.write("\n\n```\n")
+
+    def getDataExploration(self, name: str, title: str):
+        with open(DEFAULT_DIRECTORY + DATA_EXPLORATION_DOC, 'a') as file:
+            file.write(f"- {title}:\n")
+            file.write(f'  - <img src="./{name}.png" alt="drawing" style="width:1000px;"/>\n')
+        return DEFAULT_DIRECTORY + DATA_EXPLORATION_DIR + "/" + name + ".png"

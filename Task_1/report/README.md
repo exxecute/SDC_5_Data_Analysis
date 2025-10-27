@@ -10,3 +10,5 @@
 - Pivot Table
    - [Pivot Tables](./../report/pivot_tables/pivot_tables/README.md)
    - [Frequency Heatmap](./../report/pivot_tables/frequency_heatmap/README.md)
+- Advance Statistics
+   - [Data EXploration](./../report/advansed_stats/data_exploration/README.md)
