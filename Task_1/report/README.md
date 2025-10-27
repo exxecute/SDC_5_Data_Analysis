@@ -7,3 +7,6 @@
    - [Count of Unique Values](./../report/main_points/uniq_data/README.md)
    - [Value Counts](./../report/main_points/uniq_count/README.md)
    - [Simple Filtering](./../report/main_points/simple_filtering/README.md)
+- Pivot Table
+   - [Pivot Tables](./../report/pivot_tables/pivot_tables/README.md)
+   - [Frequency Heatmap](./../report/pivot_tables/frequency_heatmap/README.md)
