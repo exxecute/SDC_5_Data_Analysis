@@ -187,6 +187,8 @@ Use the `printf()` function.
 
 ## Таблица
 
+Не является синтаксисом именно markdown, используется почти везде: GitHub, GitLab, Redmine, Obsidian, Notion и тд
+
 | Столбец 1 | Столбец 2 | Столбец 3 |
 | -         | -         | -         |
 | Ячейка 1  | Ячейка 2  | Ячейка 3  |
@@ -197,4 +199,16 @@ Use the `printf()` function.
 | -         | -         | -         |
 | Ячейка 1  | Ячейка 2  | Ячейка 3  |
 | Ячейка 4  | Ячейка 5  | Ячейка 6  |
+```
+
+## TODO
+
+Не является синтаксисом именно markdown, используется почти везде: GitHub, GitLab, Redmine, Obsidian, Notion и тд
+
+- [ ] TODO
+- [x] TODO
+
+```md
+- [ ] TODO
+- [x] TODO
 ```
