@@ -10,6 +10,8 @@ from nltk.stem import PorterStemmer, LancasterStemmer, SnowballStemmer, WordNetL
 from nltk.tokenize import word_tokenize
 from collections import Counter
 from wordcloud import WordCloud
+import pandas as pd
+import numpy as np
 
 DPI = 100
 
@@ -109,3 +111,29 @@ plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
 plt.savefig("TextAnalysis" + ".png", dpi=DPI, bbox_inches='tight')
 
+
+## Additional
+# Создаем DataFrame с PCA компонентами
+pca_df = pd.DataFrame(
+    X_pca,
+    columns=[f'PC{i+1}' for i in range(X_pca.shape[1])]
+)
+
+# Добавляем целевую переменную
+pca_df['Survived'] = y.values
+
+# Считаем корреляцию
+correlation = pca_df.corr()['Survived'].drop('Survived')
+
+print("Корреляция PCA-компонент с выживаемостью:")
+print(correlation)
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+plt.figure(figsize=(7,5))
+sns.boxplot(x='Survived', y='PC1', data=pca_df)
+plt.title('Distribution of PC1 by Survival')
+plt.xlabel('Survived (0 = No, 1 = Yes)')
+plt.ylabel('PC1')
+plt.savefig("PC1vsSurv" + ".png", dpi=DPI, bbox_inches='tight')
